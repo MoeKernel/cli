@@ -59,7 +59,7 @@ def menu():
     print("  ★~(◠‿◕✿)        6. Exit                        ✿◕‿◠)~★")
     print(COLOR_RESET)
 
-    choice = input(f"{COLOR_RESET}{time_say()} {COLOR_YELLOW}Akari-Sama{COLOR_RESET}.\n\n{COLOR_RESET}escolha o que deseja fazer-nyan {COLOR_CYAN}")
+    choice = input(f"{COLOR_RESET}{time_say()} {COLOR_YELLOW}Akari-Sama{COLOR_RESET}.\n\n{COLOR_RESET}choose what want to do-nyan {COLOR_CYAN}")
 
     if choice == '1':
         commit_hash_push()
@@ -91,31 +91,31 @@ def commit_in_branch(commit_hash, branch):
 
 def apply_commit_to_branch(commit_hash, branch):
     if commit_in_branch(commit_hash, branch):
-        print(COLOR_YELLOW + f"Commit {commit_hash} já está presente na branch {branch}. Fazendo push..." + COLOR_RESET)
+        print(COLOR_YELLOW + f"Commit {commit_hash} is already present in the branch {branch}. Pushing..." + COLOR_RESET)
         push_result = run_command(f"git push origin {branch}")
         if push_result.returncode == 0:
-            print(COLOR_GREEN + f"Branch {branch} enviada com sucesso." + COLOR_RESET)
+            print(COLOR_GREEN + f"Branch {branch} sent successfully" + COLOR_RESET)
         else:
-            print(COLOR_RED + f"Erro ao enviar a branch {branch}." + COLOR_RESET)
+            print(COLOR_RED + f"Error when pushing branch {branch}." + COLOR_RESET)
         return
 
     checkout_result = run_command(f"git checkout {branch}")
     if checkout_result.returncode != 0:
-        print(COLOR_RED + f"Erro ao mudar para a branch {branch}. Pulando para a próxima branch." + COLOR_RESET)
+        print(COLOR_RED + f"Error when switching to branch {branch}. Jumping to the next branch." + COLOR_RESET)
         return
 
     cherry_pick_result = run_command(f"git cherry-pick {commit_hash}")
     if cherry_pick_result.returncode == 0:
-        print(COLOR_GREEN + f"Cherry-pick aplicado com sucesso na branch {branch}" + COLOR_RESET)
+        print(COLOR_GREEN + f"Cherry-pick successfully applied to the branch {branch}" + COLOR_RESET)
         push_result = run_command(f"git push origin {branch}")
         if push_result.returncode == 0:
-            print(COLOR_GREEN + f"Branch {branch} enviada com sucesso." + COLOR_RESET)
+            print(COLOR_GREEN + f"Branch {branch} sent successfully." + COLOR_RESET)
         else:
-            print(COLOR_RED + f"Erro ao enviar a branch {branch}." + COLOR_RESET)
+            print(COLOR_RED + f"Error when pushing branch {branch}." + COLOR_RESET)
     else:
-        print(COLOR_RED + f"Erro ao aplicar cherry-pick na branch {branch}. Tentando resolver conflitos." + COLOR_RESET)
+        print(COLOR_RED + f"Error when cherry-picking the branch {branch}. Trying to resolve conflicts." + COLOR_RESET)
         run_command("git cherry-pick --abort")
-        print(COLOR_RED + f"Cherry-pick abortado na branch {branch} devido a conflitos." + COLOR_RESET)
+        print(COLOR_RED + f"Cherry-pick aborted on branch {branch} due to conflicts." + COLOR_RESET)
 
 
 def commit_hash_push():
@@ -134,7 +134,7 @@ def commit_hash_push():
     ]
 
     for branch in branches:
-        print(COLOR_CYAN + f"Aplicando cherry-pick na branch {branch}" + COLOR_RESET)
+        print(COLOR_CYAN + f"Cherry-picking the branch {branch}" + COLOR_RESET)
         apply_commit_to_branch(commit_hash, branch)
 
     run_command("git checkout fourteen")
@@ -161,7 +161,7 @@ def commit_hashes_push():
     ]
 
     for branch in branches:
-        print(COLOR_CYAN + f"Aplicando cherry-pick na branch {branch}" + COLOR_RESET)
+        print(COLOR_CYAN + f"Cherry-picking the branch {branch}" + COLOR_RESET)
         for commit_hash in commit_hashes:
             apply_commit_to_branch(commit_hash, branch)
 
@@ -174,9 +174,9 @@ def create_patch_hash():
     result = run_command(f"git diff {hash}^! > {name_patch}.patch")
 
     if result.returncode == 0:
-        print(COLOR_GREEN + f"{name_patch}.patch criado com sucesso." + COLOR_RESET)
+        print(COLOR_GREEN + f"{name_patch}.patch successfully created." + COLOR_RESET)
     else:
-        print(COLOR_YELLOW + f"Ocorreu algum erro, tente novamente...")
+        print(COLOR_YELLOW + f"An error occurred, try again...")
 
 
 def apply_patch():
@@ -196,7 +196,6 @@ def detect_os(os_name):
 
 
 def install_packages():
-    """Install Packages Utils."""
     choice = str(input(COLOR_RESET + "Sir,\nU want the really install packages? " + COLOR_CYAN))
     yes = ["yes", "yeah", "yup", "yeah"]
 
