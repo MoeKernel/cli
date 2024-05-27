@@ -85,7 +85,7 @@ def menu():
         install_packages()
     elif choice == '6':
         custom_install_packages()
-    elif choice == '7':
+    elif choice == '7' or choice == "exit":
         print(COLOR_GREEN + "Goodbye! Have a nice day! ｡◕‿◕｡" + COLOR_RESET)
         exit()
     else:
@@ -236,7 +236,6 @@ def spinning_cursor(stop_event):
 
 def custom_install_packages():
     clear()
-
 
     # run_command("./anime/install.sh")
     # miku = run_command("anime -r miku").stdout
