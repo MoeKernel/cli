@@ -80,13 +80,11 @@ def menu():
 
 
 def run_command(command):
-    """Executa um comando no shell e retorna a saída."""
     result = subprocess.run(command, shell=True, text=True, capture_output=True)
     return result
 
 
 def commit_in_branch(commit_hash, branch):
-    """Verifica se o commit está presente no histórico da branch."""
     result = run_command(f"git log {branch} --pretty=format:%H")
     return commit_hash in result.stdout.split()
 
