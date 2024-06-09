@@ -37,7 +37,7 @@ gcc_() {
 }
 
 kernelsu() {
-        wget https://raw.githubusercontent.com/MoeKernel/scripts/ksu/ksu_update.sh
+    wget https://raw.githubusercontent.com/MoeKernel/scripts/ksu/ksu_update.sh
 	chmod +x ksu_update.sh
 	./ksu_update.sh -t stable
 }
