@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# by @whyakari ©2024
+#
+
 # install packages
 packages() {
 	sudo apt install bc ccache neovim -y
@@ -15,6 +19,7 @@ clang() {
 	rm -rf clang
 }
 
+# configure gcc setup.
 gcc_() {
 	GCC_64_DIR="$HOME/tc/aarch64-linux-android-14.0"
 	GCC_32_DIR="$HOME/tc/arm-linux-androideabi-14.0"
@@ -36,15 +41,22 @@ gcc_() {
 	fi
 }
 
+# get kernelsu from @whyakari
 kernelsu() {
     wget https://raw.githubusercontent.com/MoeKernel/scripts/ksu/ksu_update.sh
 	chmod +x ksu_update.sh
 	./ksu_update.sh -t stable
 }
 
-# idk lol.
+# configure kernel for compile.
 kernel() {
 	make mrproper
+}
+
+# get script build kernel.
+moe() {
+   wget https://raw.githubusercontent.com/MoeKernel/scripts/ksu/moe.sh
+   chmod +x moe.sh
 }
 
 packages
@@ -52,3 +64,4 @@ clang
 gcc_
 kernelsu
 kernel
+moe
