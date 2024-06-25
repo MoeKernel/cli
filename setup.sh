@@ -6,7 +6,7 @@
 
 # install packages
 packages() {
-	sudo apt install bc ccache neovim -y
+	sudo apt install flex bc ccache neovim -y
 }
 
 # configure clang
